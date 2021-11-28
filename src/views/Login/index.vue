@@ -40,6 +40,7 @@
 
 <script>
 import { login } from '@/api/user'
+import { Toast } from 'vant'
 export default {
   data () {
     return {
@@ -59,8 +60,17 @@ export default {
       this.$router.go(-1)
     },
     async onSubmit () {
-      const res = await login(this.Form)
-      console.log(res)
+      try {
+        const res = await login(this.Form)
+        this.$store.commit('initunser', res)
+        Toast({
+          message: '登录成功',
+          icon: 'passed'
+        })
+        this.$router.push('/account')
+      } catch (error) {
+
+      }
     }
   }
 }
