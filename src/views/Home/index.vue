@@ -1,6 +1,6 @@
 <template>
   <div>
-    <router-view/>
+    我是首页
   </div>
 </template>
 

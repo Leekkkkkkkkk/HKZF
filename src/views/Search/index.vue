@@ -1,6 +1,6 @@
 <template>
   <div>
-    <router-view/>
+    <h1>我是搜索</h1>
   </div>
 </template>
 

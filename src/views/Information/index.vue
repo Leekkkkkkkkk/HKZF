@@ -1,6 +1,6 @@
 <template>
   <div>
-    <router-view/>
+    <h1>我是咨询</h1>
   </div>
 </template>
 
