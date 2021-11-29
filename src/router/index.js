@@ -6,6 +6,11 @@ import Search from '@/views/Search'
 import Information from '@/views/Information'
 import Account from '@/views/Account'
 import Login from '@/views/Login'
+import Favorate from '@/views/Favorate'
+import Rent from '@/views/Rent'
+import City from '@/views/City'
+import Detail from '@/views/Detail'
+import Map from '@/views/Map'
 Vue.use(VueRouter)
 
 const routes = [
@@ -39,6 +44,27 @@ const routes = [
   {
     path: '/login',
     component: Login
+  },
+  {
+    path: '/favorate',
+    component: Favorate
+  },
+  {
+    path: '/rent',
+    component: Rent
+  },
+  {
+    path: '/city',
+    component: City
+  },
+  {
+    path: '/detail/:id',
+    name: 'detail',
+    component: Detail
+  },
+  {
+    path: '/map',
+    component: Map
   }
 ]
 
