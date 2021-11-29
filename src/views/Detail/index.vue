@@ -77,7 +77,12 @@
         <span>天山星城</span>
       </div>
       <!-- 主要 -->
-      <div class="map">111</div>
+      <!-- :center="{lng: 116.449979, lat: 39.912338}" -->
+      <baidu-map class="map" :center="{lng: houseDetail.coord.longitude, lat: houseDetail.coord.latitude}" :zoom="17">
+          <bm-marker :position="{lng: houseDetail.coord.longitude, lat: houseDetail.coord.latitude}"  animation="BMAP_ANIMATION_BOUNCE">
+            <bm-label :content="houseDetail.community" icon='comment-o' :offset="{width: -30, height: -20}"/>
+          </bm-marker>
+      </baidu-map>
     </div>
     <!--！ 地图 -->
     <!-- q其他 -->

@@ -4,7 +4,7 @@ import store from '@/store'
 
 const request = axios.create({
   baseURL: 'http://liufusong.top:8080',
-  timeout: 3000
+  timeout: 4000
 })
 
 request.interceptors.request.use((config) => {

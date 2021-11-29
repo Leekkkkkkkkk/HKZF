@@ -1,16 +1,20 @@
 <template>
-  <div>
+  <div class="rent">
     <van-nav-bar title="房屋管理" >
       <template #left>
         <van-icon name="arrow-left" class="iconFont" @click="$router.back()" />
       </template>
     </van-nav-bar>
-    <h1>我的出租</h1>
+    <div class="ren_publish">
+      <img src="http://liufusong.top:8080/img/not-found.png" alt="">
+      <p>您还没有房源,<a href="javascipt:;">去发布房源</a>吧~</p>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
+  name: 'rent',
   data () {
     return {
 
@@ -37,6 +41,20 @@ export default {
     .iconFont{
     color: #fff;
     font-size: 18px;
+  }
+}
+.ren_publish{
+  text-align: center;
+  img{
+    width: 150px;
+    height: 100px;
+    margin-top: 20px;
+  }
+  p{
+    font-size: 14px;
+    a{
+      color: #21b97a;
+    }
   }
 }
 </style>
