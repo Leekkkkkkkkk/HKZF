@@ -11,6 +11,7 @@ import Rent from '@/views/Rent'
 import City from '@/views/City'
 import Detail from '@/views/Detail'
 import Map from '@/views/Map'
+import Add from '@/views/Add'
 Vue.use(VueRouter)
 
 const routes = [
@@ -22,14 +23,11 @@ const routes = [
     path: '/layout',
     component: Layout,
     redirect: '/home',
+    // 二级路由
     children: [
       {
         path: '/home',
         component: Home
-      },
-      {
-        path: '/serach',
-        component: Search
       },
       {
         path: '/information',
@@ -65,6 +63,15 @@ const routes = [
   {
     path: '/map',
     component: Map
+  },
+  {
+    path: '/add',
+    name: 'Add',
+    component: Add
+  },
+  {
+    path: '/search',
+    component: Search
   }
 ]
 

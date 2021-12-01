@@ -7,7 +7,7 @@
     </van-nav-bar>
     <div class="ren_publish">
       <img src="http://liufusong.top:8080/img/not-found.png" alt="">
-      <p>您还没有房源,<a href="javascipt:;">去发布房源</a>吧~</p>
+      <p>您还没有房源,<a href="javascript:;" @click="$router.push('/add')">去发布房源</a>吧~</p>
     </div>
   </div>
 </template>

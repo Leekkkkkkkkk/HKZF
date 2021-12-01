@@ -6,7 +6,9 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    user: getStorage('hkzf-user')
+    user: getStorage('hkzf-user'),
+    ctiyName: getStorage('City-Name'),
+    Community: []
   },
   mutations: {
     initunser (state, payload) {
@@ -16,6 +18,13 @@ export default new Vuex.Store({
     removeStorage (state) {
       state.user = null
       removeStorage('hkzf-user')
+    },
+    initCity (state, payload) {
+      state.ctiyName = payload
+      setStorage('City-Name', JSON.stringify(payload))
+    },
+    CommunityData (state, payload) {
+      state.Community = payload
     }
   },
   actions: {

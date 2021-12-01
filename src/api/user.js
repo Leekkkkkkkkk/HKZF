@@ -39,3 +39,16 @@ export function favoritesTr (id) {
     url: `/user/favorites/${id}`
   })
 }
+/**
+ *发布房屋
+ * @param {*} data {title, description, houseImg, oriented, supporting, price, roomType, size, floor, community}
+ * @returns
+ */
+export function
+uploadHouses (data) {
+  return request({
+    url: '/user/houses',
+    method: 'POST',
+    data
+  })
+}

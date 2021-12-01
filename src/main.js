@@ -6,14 +6,17 @@ import Vant, { Lazyload } from 'vant'
 import 'vant/lib/index.css'
 import 'amfe-flexible'
 import BaiduMap from 'vue-baidu-map'
+import { VueJsonp } from 'vue-jsonp'
 
 Vue.config.productionTip = false
+Vue.use(VueJsonp)
 Vue.use(Vant)
 Vue.use(Lazyload)
 Vue.use(BaiduMap, {
   // ak 是在百度地图开发者平台申请的密钥 详见 http://lbsyun.baidu.com/apiconsole/key */
   ak: '9HeOiLigGH1fiB5l5GKI5WDy8vN2MBF3'
 })
+
 new Vue({
   router,
   store,

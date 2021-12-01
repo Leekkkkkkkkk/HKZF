@@ -9,3 +9,14 @@ export function getHouses (id) {
     url: `/houses/${id}`
   })
 }
+/**
+ * 发布房源需要的东西
+ * @param {*} params
+ * @returns
+ */
+export function PublishHouse (params) {
+  return request({
+    url: '/houses/params',
+    params
+  })
+}

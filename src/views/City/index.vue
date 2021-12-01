@@ -12,12 +12,12 @@
 
       <van-index-bar :index-list="indexList" sticky :sticky-offset-top='46'>
         <van-index-anchor index="#">当前城市</van-index-anchor>
-        <van-cell title="上海"/>
+        <van-cell :title="$store.state.ctiyName.label"/>
         <van-index-anchor index="热">热门城市</van-index-anchor>
         <van-cell :title="item.label"  v-for="(item,index) in HotCtiyList" :key="index" @click="hotCtiy(item)"/>
         <div class="box" v-for="item in newIndex" :key="item">
           <van-index-anchor :index="item" />
-          <van-cell :title="item" v-for="item in allCityList[item]" :key="item" @click="getCity(item)"/>
+          <van-cell :title="item.label" v-for="(item,index) in allCityList[item]" :key="index" @click="getCity(item)"/>
         </div>
       </van-index-bar>
   </div>
@@ -71,18 +71,20 @@ export default {
         this.allCityList[item.short[0].toUpperCase()] = []
       })
       res.map(item => {
-        this.allCityList[item.short[0].toUpperCase()].push(item.label)
+        this.allCityList[item.short[0].toUpperCase()].push(item)
       })
-      // console.log(this.allCityList)
+      console.log(this.allCityList)
       // console.log(test1)
       // console.log(this.test)
       // console.log(this.allCityList)
     },
     hotCtiy (ite) {
-      console.log(ite)
+      this.$store.commit('initCity', ite)
+      this.$router.push('/home')
     },
     getCity (ite) {
-      console.log(ite)
+      this.$store.commit('initCity', ite)
+      this.$router.push('/home')
     }
   }
 }

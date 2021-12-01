@@ -55,19 +55,26 @@
 </template>
 
 <script>
-import { swiper, groups } from '@/api/home.js'
+import { swiper, groups, Bmap } from '@/api/home.js'
+import { Info } from '@/api/area.js'
+import { mapState } from 'vuex'
 export default {
   name: 'home',
   data () {
     return {
       imgList: {},
-      gridlist: []
+      gridlist: [],
+      city: [],
+      InfoCity: ''
     }
   },
-
+  computed: {
+    ...mapState(['ctiyName'])
+  },
   created () {
     this.getSwiper()
-    this.getGroups()
+    this.getBmap()
+    this.getInfo()
   },
 
   methods: {
@@ -76,8 +83,23 @@ export default {
       this.imgList = res
     },
     async getGroups () {
-      const res = await groups()
+      const res = await groups(this.ctiyName.value)
       this.gridlist = res
+    },
+    // 本地地址
+    async getBmap () {
+      const res = await Bmap()
+      this.InfoCity = res.content.address_detail.city
+    },
+    // 默认地址
+    async getInfo () {
+      const res = await Info(this.InfoCity)
+      this.city = res
+      if (this.ctiyName) {
+        this.getGroups()
+      } else {
+        this.$store.commit('initCity', res)
+      }
     }
   }
 }
