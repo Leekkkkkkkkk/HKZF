@@ -6,7 +6,7 @@
         </template>
       </van-nav-bar>
       <!-- :center="{lng: 116.449979, lat: 39.912338}" -->
-      <baidu-map class="map" center="上海" :zoom="11">
+      <baidu-map class="map" :center="ctiyName.label" :zoom="11">
         <bm-scale anchor="BMAP_ANCHOR_TOP_RIGHT BMAP_ANCHOR_BOTTOM_LEFT"></bm-scale>
         <bm-navigation anchor="BMAP_NAVIGATION_CONTROL_PAN BMAP_ANCHOR_BOTTOM_RIGHT"></bm-navigation>
       </baidu-map>
@@ -14,6 +14,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
   data () {
     return {
@@ -22,6 +23,9 @@ export default {
 
   created () {
 
+  },
+  computed: {
+    ...mapState(['ctiyName'])
   },
 
   methods: {

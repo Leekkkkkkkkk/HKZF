@@ -78,7 +78,7 @@
       </div>
       <!-- 主要 -->
       <!-- :center="{lng: 116.449979, lat: 39.912338}" -->
-      <baidu-map class="map" :center="{lng: houseDetail.coord.longitude, lat: houseDetail.coord.latitude}" :zoom="17">
+      <baidu-map v-if="houseDetail.coord" class="map" :center="{lng: houseDetail.coord.longitude, lat: houseDetail.coord.latitude}" :zoom="17">
           <bm-marker :position="{lng: houseDetail.coord.longitude, lat: houseDetail.coord.latitude}"  animation="BMAP_ANIMATION_BOUNCE">
             <bm-label :content="houseDetail.community" icon='comment-o' :offset="{width: -30, height: -20}"/>
           </bm-marker>
@@ -137,9 +137,11 @@
 
         <!-- 底部 -->
         <div class='foot'>
-          <div class="foot-item">
-            <van-icon :name="light ? 'star' : 'star-o'"/>收藏
-            <img src="" alt=""></div>
+          <div class="foot-item" @click="onLight">
+            <van-icon :name="light ? 'star' : 'star-o'"/>
+            收藏
+            <img src="" alt="" />
+          </div>
           <div class="foot-item">在线咨询</div>
           <div class="foot-item tel">电话预约</div>
         </div>
@@ -149,8 +151,9 @@
 
 <script>
 import { getHouses } from '@/api/house.js'
-import { favoritesTr } from '@/api/user.js'
+import { favoritesTr, addFavorites, deleteFavorites } from '@/api/user.js'
 import { mapState } from 'vuex'
+import { Toast } from 'vant'
 export default {
   name: 'detail',
   data () {
@@ -180,6 +183,20 @@ export default {
     async getFavoritesTr () {
       const res = await favoritesTr(this.id)
       this.light = res.isFavorite
+    },
+    async  onLight () {
+      Toast.loading({
+        message: '加载中...',
+        forbidClick: true,
+        duration: 0
+      })
+      if (this.light) {
+        await deleteFavorites(this.id)
+        Toast.success('删除收藏成功')
+      } else {
+        await addFavorites(this.id)
+        Toast.success('添加收藏成功')
+      }
     }
   }
 }

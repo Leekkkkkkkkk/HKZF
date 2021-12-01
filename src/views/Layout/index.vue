@@ -8,7 +8,7 @@
         <van-icon name="wap-home-o" />
       </template>
       </van-tabbar-item>
-      <van-tabbar-item to="/serach">
+      <van-tabbar-item to="/list">
         找房
         <template #icon>
           <van-icon name="search" />

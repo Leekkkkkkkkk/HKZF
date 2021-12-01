@@ -12,6 +12,7 @@ import City from '@/views/City'
 import Detail from '@/views/Detail'
 import Map from '@/views/Map'
 import Add from '@/views/Add'
+import List from '@/views/List'
 Vue.use(VueRouter)
 
 const routes = [
@@ -36,6 +37,10 @@ const routes = [
       {
         path: '/account',
         component: Account
+      },
+      {
+        path: '/list',
+        component: List
       }
     ]
   },

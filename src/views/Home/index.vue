@@ -5,7 +5,7 @@
       <van-search  placeholder="请输入搜索关键词" class="search">
         <template #left>
           <div class="cityList" @click="$router.push('/city')">
-            上海
+            {{$store.state.ctiyName.label}}
             <van-icon name="arrow-down" />
           </div>
         </template>
@@ -89,6 +89,7 @@ export default {
     // 本地地址
     async getBmap () {
       const res = await Bmap()
+      console.log(res)
       this.InfoCity = res.content.address_detail.city
     },
     // 默认地址

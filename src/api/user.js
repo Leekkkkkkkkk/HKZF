@@ -52,3 +52,34 @@ uploadHouses (data) {
     data
   })
 }
+/**
+ *已发布的房源
+ * @returns
+ */
+export function upHouses () {
+  return request({
+    url: '/user/houses'
+  })
+}
+/**
+ *添加收藏
+ * @param {*} id {code}
+ * @returns
+ */
+export function addFavorites (id) {
+  return request({
+    url: `/user/favorites/${id}`,
+    method: 'POST'
+  })
+}
+/**
+ *删除房屋收藏
+ * @param {*} id  {code}
+ * @returns
+ */
+export function deleteFavorites (id) {
+  return request({
+    url: `/user/favorites/${id}`,
+    method: 'DELETE'
+  })
+}

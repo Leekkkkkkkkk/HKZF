@@ -29,6 +29,5 @@ export function groups (params) {
  */
 export function Bmap () {
   return jsonp('http://api.map.baidu.com/location/ip?ak=9HeOiLigGH1fiB5l5GKI5WDy8vN2MBF3&coor=bd09ll', {
-
   }, 3000)
 }
