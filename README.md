@@ -1,24 +1,22 @@
-# hkzf_m
+# 租房项目—好客租房
 
-## Project setup
-```
-npm install
-```
+## 功能
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+根据条件筛选房屋
 
-### Compiles and minifies for production
-```
-npm run build
-```
+地图找房
 
-### Lints and fixes files
-```
-npm run lint
-```
+## 技术栈
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+axios 
+
+vant 
+
+vuex
+
+vue-router
+
+vue2
+
+b-map
+
