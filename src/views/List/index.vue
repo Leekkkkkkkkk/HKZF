@@ -161,7 +161,7 @@ export default {
     onAs (label, index) {
       console.log(label)
       // const inx = index
-      // console.log(index)
+      console.log(index)
       // const res = this.$refs.getValue.getColumnValue(2)
       // console.log(res)
       const inx = index[0]
@@ -187,13 +187,13 @@ export default {
         }
       }
       this.$refs.toAS.toggle()
-      this.getAllhouse()
+      // this.getAllhouse()
     },
     // 方式
     onRt (val, inx) {
+      this.getAllhouse()
       this.state.rentType = val.value
       this.$refs.toRT.toggle()
-      this.getAllhouse()
     },
     // 租金
     onPrice (val, inx) {
