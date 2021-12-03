@@ -56,3 +56,16 @@ export function community (name, id) {
     }
   })
 }
+/**
+ *根据城市id获取房源信息
+ * @param {*} id {id}
+ *
+ */
+export function getMapHouse (id) {
+  return request({
+    url: '/area/map',
+    params: {
+      id
+    }
+  })
+}
