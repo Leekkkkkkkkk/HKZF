@@ -20,3 +20,39 @@ export function PublishHouse (params) {
     params
   })
 }
+/**
+ *获取房屋查询条件
+ * @param {*} params {}
+ * @returns
+ */
+export function getCondition (id) {
+  return request({
+    url: '/houses/condition',
+    params: {
+      id
+    }
+  })
+}
+/**
+ *查询房屋城市
+ * @param {*} params {
+ * cityid,
+ * area,
+ * subway,
+ * rentType,
+ * price,
+ * more,
+ * roomType,
+ * oriented,
+ * characteristic,
+ * floor,
+ * start,
+ * end
+ * }
+ */
+export function getAllHouses (params) {
+  return request({
+    url: '/houses',
+    params
+  })
+}
