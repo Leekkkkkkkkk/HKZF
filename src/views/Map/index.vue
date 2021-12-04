@@ -5,7 +5,7 @@
           <van-icon name="arrow-left" class="iconFont" @click="$router.back()" />
         </template>
       </van-nav-bar>
-      <baidu-map class="map" :center="city.label" :zoom="zoom">
+      <baidu-map v-if="maphouseList.length" class="map" :center="center" :zoom="zoom">
         <bm-scale anchor=" BMAP_ANCHOR_BOTTOM_LEFT"></bm-scale>
         <bm-navigation anchor=" BMAP_ANCHOR_BOTTOM_RIGHT"></bm-navigation>
             <!-- BMAP_NAVIGATION_CONTROL_PAN -->
@@ -47,7 +47,11 @@ export default {
       show: 1,
       zoom: 11,
       houseList: [],
-      isshow: false
+      isshow: false,
+      center: {
+        lng: 0,
+        lat: 0
+      }
     }
   },
 
@@ -71,28 +75,28 @@ export default {
         console.log(res)
         this.maphouseList = res
         Toast.success('获取成功')
+        this.center = {
+          lng: res[0].coord.longitude,
+          lat: res[0].coord.latitude
+        }
       } catch (error) {
         console.dir(error)
         Toast.fail('获取房源失败')
       }
     },
     draw ({ el, BMap, map }, { longitude, latitude }) {
-      console.log(longitude, latitude)
       const pixel = map.pointToOverlayPixel(new BMap.Point(longitude, latitude))
       el.style.left = pixel.x - 60 + 'px'
       el.style.top = pixel.y - 20 + 'px'
     },
     async onClick (ite) {
-      if (this.show === 3) {
-        this.zoom = 16
-      }
       if (this.show >= 3) {
         Toast.loading({
           message: '加载中...',
           forbidClick: true,
           duration: 0
         })
-        this.zoom = 16
+
         console.log(ite)
         try {
           const res = await getAllHouses({
@@ -113,9 +117,17 @@ export default {
         forbidClick: true,
         duration: 0
       })
-      console.log(ite)
-      this.zoom = 13
+      this.center = {
+        lng: ite.coord.longitude,
+        lat: ite.coord.latitude
+      }
+      if (this.show === 1) {
+        this.zoom = 13
+      } else if (this.show === 2) {
+        this.zoom = 16
+      }
       this.show++
+      console.log(ite)
       try {
         const res = await getMapHouse(ite.value)
         console.log(res)
