@@ -83,12 +83,16 @@ export default {
       el.style.top = pixel.y - 20 + 'px'
     },
     async onClick (ite) {
+      if (this.show === 3) {
+        this.zoom = 16
+      }
       if (this.show >= 3) {
         Toast.loading({
           message: '加载中...',
           forbidClick: true,
           duration: 0
         })
+        this.zoom = 16
         console.log(ite)
         try {
           const res = await getAllHouses({
@@ -110,13 +114,13 @@ export default {
         duration: 0
       })
       console.log(ite)
+      this.zoom = 13
       this.show++
       try {
         const res = await getMapHouse(ite.value)
         console.log(res)
         this.maphouseList = res
         Toast.success('获取成功')
-        this.zoom = 13
       } catch (error) {
         console.dir(error)
         Toast.fail('获取房源失败')

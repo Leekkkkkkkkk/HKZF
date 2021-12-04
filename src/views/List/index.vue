@@ -64,16 +64,16 @@
         <van-popup v-model="show"  position="right" :style="{ height: '100%', }"  style="width:80%">
           <van-cell title="户型" />
           <div class="tag_s">
-            <van-tag plain type="primary" size="large" v-for="item in roomType" @click="onRoomType(item)" :key="item.value">{{item.label}}</van-tag>
+            <van-tag plain type="primary" :class="{TrColor:state.more.includes(item.value)}" size="large" v-for="item in roomType" @click="onRoomType(item)" :key="item.value">{{item.label}}</van-tag>
           </div>
           <van-cell title="朝向" />
           <div class="tag_s">
-            <van-tag plain type="primary" size="large" v-for="item in oriented" @click="onOriented(item)" :key="item.value">{{item.label}}</van-tag>
+            <van-tag plain type="primary" :class="{TrColor:state.more.includes(item.value)}" size="large" v-for="item in oriented" @click="onOriented(item)" :key="item.value">{{item.label}}</van-tag>
           </div>
           <van-cell title="楼层" />
-          <van-tag plain type="primary" size="large" v-for="item in floor " @click="onFloor(item)" :key="item.value">{{item.label}}</van-tag>
+          <van-tag plain type="primary" :class="{TrColor:state.more.includes(item.value)}" size="large" v-for="item in floor " @click="onFloor(item)" :key="item.value">{{item.label}}</van-tag>
           <van-cell title="房屋亮点" />
-          <van-tag plain type="primary" size="large" v-for="item in characteristic " @click="onCharacteristic(item)" :key="item.value">{{item.label}}</van-tag>
+          <van-tag plain type="primary" :class="{TrColor:state.more.includes(item.value)}" size="large" v-for="item in characteristic " @click="onCharacteristic(item)" :key="item.value">{{item.label}}</van-tag>
           <van-button type="warning" @click="show = false" >取消</van-button>
           <van-button type="info" @click="onClick">提交</van-button>
         </van-popup>
@@ -204,23 +204,47 @@ export default {
     },
     // 户型
     onRoomType (ite) {
-      console.log(ite)
-      this.state.more.push(ite.value)
+      const pl = this.state.more.indexOf(ite.value)
+      if (pl !== -1) {
+        this.state.more.splice(pl, 1)
+        console.log('删除')
+      } else {
+        this.state.more.push(ite.value)
+        console.log('添加')
+      }
     },
     // 朝向
     onOriented (ite) {
-      console.log(ite)
-      this.state.more.push(ite.value)
+      const pl = this.state.more.indexOf(ite.value)
+      if (pl !== -1) {
+        this.state.more.splice(pl, 1)
+        console.log('删除')
+      } else {
+        this.state.more.push(ite.value)
+        console.log('添加')
+      }
     },
     // 楼层
     onFloor (ite) {
-      console.log(ite)
-      this.state.more.push(ite.value)
+      const pl = this.state.more.indexOf(ite.value)
+      if (pl !== -1) {
+        this.state.more.splice(pl, 1)
+        console.log('删除')
+      } else {
+        this.state.more.push(ite.value)
+        console.log('添加')
+      }
     },
     // 房屋亮点
     onCharacteristic (ite) {
-      console.log(ite)
-      this.state.more.push(ite.value)
+      const pl = this.state.more.indexOf(ite.value)
+      if (pl !== -1) {
+        this.state.more.splice(pl, 1)
+        console.log('删除')
+      } else {
+        this.state.more.push(ite.value)
+        console.log('添加')
+      }
     },
     onClick () {
       this.getAllhouse()
@@ -339,6 +363,10 @@ export default {
       justify-content: center;
       margin-left: 40px;
     }
+    .TrColor{
+    background-color: #21b97a;
+    color: #fff;
+  }
 }
 
 </style>
