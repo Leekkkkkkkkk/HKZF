@@ -5,7 +5,7 @@
           <van-icon name="arrow-left" class="iconFont" @click="$router.back()" />
         </template>
       </van-nav-bar>
-      <baidu-map v-if="maphouseList.length" class="map" :center="center" :zoom="zoom">
+      <baidu-map  class="map" :center="center" @ready="handler" :zoom="zoom">
         <bm-scale anchor=" BMAP_ANCHOR_BOTTOM_LEFT"></bm-scale>
         <bm-navigation anchor=" BMAP_ANCHOR_BOTTOM_RIGHT"></bm-navigation>
             <!-- BMAP_NAVIGATION_CONTROL_PAN -->
@@ -49,8 +49,8 @@ export default {
       houseList: [],
       isshow: false,
       center: {
-        lng: 0,
-        lat: 0
+        lng: '',
+        lat: ''
       }
     }
   },
@@ -64,6 +64,13 @@ export default {
   },
 
   methods: {
+    handler ({ BMap, map }) {
+      console.log(BMap, map)
+      // this.center.lng = 116.404
+      // this.center.lat = 39.915
+      this.center = this.ctiyName.label
+      this.zoom = 11
+    },
     async  getMapHouselist () {
       Toast.loading({
         message: '加载中...',
@@ -75,10 +82,6 @@ export default {
         console.log(res)
         this.maphouseList = res
         Toast.success('获取成功')
-        this.center = {
-          lng: res[0].coord.longitude,
-          lat: res[0].coord.latitude
-        }
       } catch (error) {
         console.dir(error)
         Toast.fail('获取房源失败')
