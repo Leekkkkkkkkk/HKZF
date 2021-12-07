@@ -35,7 +35,7 @@ import { getMapHouse } from '@/api/area.js'
 import { getAllHouses } from '@/api/house.js'
 import { mapState } from 'vuex'
 import { Toast } from 'vant'
-import CommodityCard from '../../components/CommodityCard.vue'
+import CommodityCard from '@/components/CommodityCard.vue'
 export default {
   components: { CommodityCard },
   name: 'map-baidu',
@@ -88,6 +88,8 @@ export default {
       }
     },
     draw ({ el, BMap, map }, { longitude, latitude }) {
+      console.log(el, BMap, map)
+      console.log(longitude, latitude)
       const pixel = map.pointToOverlayPixel(new BMap.Point(longitude, latitude))
       el.style.left = pixel.x - 60 + 'px'
       el.style.top = pixel.y - 20 + 'px'
