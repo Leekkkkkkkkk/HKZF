@@ -5,36 +5,35 @@
         <van-icon name="arrow-left" class="iconFont" @click="$router.back()" />
       </template>
     </van-nav-bar>
-    <div class="ren_publish" v-if="housesList.length === 0">
+    <div class="ren_publish" v-if="housesLis.length === 0">
       <img src="http://liufusong.top:8080/img/not-found.png" alt="">
       <p>您还没有房源,<a href="javascript:;" @click="$router.push('/add')">去发布房源</a>吧~</p>
     </div>
-    <commodity-card :card="housesList"  />
+    <commodity-card :card="housesLis"  />
   </div>
 </template>
 
 <script>
-import { upHouses } from '@/api/user.js'
 import CommodityCard from '../../components/CommodityCard.vue'
+import { mapState, createNamespacedHelpers } from 'vuex'
+const { mapActions: maprentActions, mapState: maphoulist } = createNamespacedHelpers('rent')
 export default {
   components: { CommodityCard },
   name: 'rent',
   data () {
     return {
-      housesList: []
     }
   },
-
+  computed: {
+    ...mapState(['user']),
+    ...maphoulist(['housesLis'])
+  },
   created () {
-    this.getUpHouses()
+    this.getList(this.user)
   },
 
   methods: {
-    async getUpHouses () {
-      const res = await upHouses()
-      console.log(res)
-      this.housesList = res
-    }
+    ...maprentActions(['getList'])
   }
 }
 </script>

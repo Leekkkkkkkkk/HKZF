@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import { getStorage, setStorage, removeStorage } from '@/utils/storage.js'
+import rent from './modules/rent'
 
 Vue.use(Vuex)
 
@@ -30,5 +31,6 @@ export default new Vuex.Store({
   actions: {
   },
   modules: {
+    rent
   }
 })
